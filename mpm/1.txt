@@ -3,6 +3,7 @@ asgiref==3.7.2
 billiard==4.2.0
 CacheControl==0.13.1
 cachetools==5.3.2
+celery==5.3.6
 certifi==2023.11.17
 cffi==1.16.0
 charset-normalizer==3.3.2
@@ -15,6 +16,7 @@ Django==5.0
 django-extensions==3.2.3
 djangorestframework==3.14.0
 drf-yasg==1.21.7
+firebase-admin==6.3.0
 httplib2==0.22.0
 idna==3.6
 inflection==0.5.1

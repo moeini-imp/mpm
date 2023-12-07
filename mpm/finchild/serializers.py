@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,Events,CashFlow,UserAvatar,ShopEntity,JobChallanges
+from .models import User,Events,CashFlow,UserAvatar,ShopEntity,JobChallanges,Loan
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,4 +34,10 @@ class ShopEntitySerializers(serializers.ModelSerializer):
 class JobChallangeSerializers(serializers.ModelSerializer):
     class Meta:
         model=JobChallanges
+        fields='__all__'
+
+
+class LoadnSerializers(serializers.ModelSerializer):
+    class Meta:
+        model=Loan
         fields='__all__'
