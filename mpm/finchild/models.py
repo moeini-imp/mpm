@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+import random
 
 class UserAvatar(models.Model):
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
@@ -11,6 +14,7 @@ class User(models.Model):
     avatar_image = models.ForeignKey(UserAvatar, on_delete=models.PROTECT, blank=True, null=True)
     money = models.IntegerField(default=1000)
     happines=models.IntegerField(default=0)
+    exp=models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -29,6 +33,10 @@ class User(models.Model):
         elif event.event_type == 'out':
             self.money -= event.price
 
+    def add_loan(self,loan):
+        self.money+=loan.value
+    
+
     def store_bought_item_data(self, item_title, item_price):
         BoughtItem.objects.create(user=self, title=item_title, price=item_price)
 
@@ -45,10 +53,6 @@ class Events(models.Model):
 
     def __str__(self):
         return self.title
-    
-    def event_choosen_data(self,user):
-        CashFlow.objects.create()
-
 
 class CashFlow(models.Model):
     CHOICES = (
@@ -58,6 +62,7 @@ class CashFlow(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     flow_type = models.CharField(choices=CHOICES, max_length=10)
     title = models.CharField(max_length=100)
+    value=models.models.IntegerField()
     flow_trails = models.ForeignKey(Events, on_delete=models.PROTECT)
 
     def __str__(self):
@@ -101,3 +106,20 @@ class JobChallanges(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Loan(models.Model):
+    value=models.IntegerField()
+    repay_time=models.IntegerField()
+    interests=models.IntegerField()
+    insurance=models.models.CharField(chioces=(('bill','bill'),('wallet','wallet')), max_length=50)
+
+
+
+@receiver(pre_save, sender=Loan)
+def set_loan_conditions(sender, instance, **kwargs):
+    instance.value = random.randint(10,1000)
+    instance.repay_time = random.randint(1, 3)
+    instance.interests=random.randint(1,20)
+
+
