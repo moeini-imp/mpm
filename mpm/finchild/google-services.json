@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "310992561808",
+    "project_id": "teenyfi-d2383",
+    "storage_bucket": "teenyfi-d2383.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310992561808:android:a2a7735f36f05941869a15",
+        "android_client_info": {
+          "package_name": "com.marafteam.teenyfi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5njYrM5-ZZMb3TK8X75ZLFLkmGjeQlzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
