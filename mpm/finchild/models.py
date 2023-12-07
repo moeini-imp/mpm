@@ -62,7 +62,7 @@ class CashFlow(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     flow_type = models.CharField(choices=CHOICES, max_length=10)
     title = models.CharField(max_length=100)
-    value=models.models.IntegerField()
+    value=models.IntegerField()
     flow_trails = models.ForeignKey(Events, on_delete=models.PROTECT)
 
     def __str__(self):
@@ -109,10 +109,14 @@ class JobChallanges(models.Model):
     
 
 class Loan(models.Model):
+    CHOICES=(
+        ('bill','bill'),
+        ('wallet','wallet')
+        )
     value=models.IntegerField()
     repay_time=models.IntegerField()
     interests=models.IntegerField()
-    insurance=models.models.CharField(chioces=(('bill','bill'),('wallet','wallet')), max_length=50)
+    insurance=models.CharField(choices=CHOICES, max_length=50)
 
 
 
@@ -120,6 +124,6 @@ class Loan(models.Model):
 def set_loan_conditions(sender, instance, **kwargs):
     instance.value = random.randint(10,1000)
     instance.repay_time = random.randint(1, 3)
-    instance.interests=random.randint(1,20)
+    instance.interests=random.randint(1,20) 
 
 
